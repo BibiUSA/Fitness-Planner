@@ -1,0 +1,57 @@
+
+#Create{
+    height: 100%;
+    padding-top: 5vh;
+
+   }
+
+#planMaker{
+    background-color: white;
+     min-height: 90%;
+     width:85%;
+    margin: 0 auto;
+    margin-top: 5%;
+    border-radius: 5%;
+   }
+
+   #newAction{
+    width:70vw;
+    margin-left: 5vw;
+    margin-top: 3vh;
+    background-color: white;
+    border: none;
+    display: list-item;
+   }
+
+   #newAction:active{
+    border: none;
+   }
+
+   .planName{
+    margin-left: 6vw;
+    padding-top: 3vh;
+   }
+    
+   /* .planName{
+    margin-left: 4vw;
+    padding-top: 3vh;
+    font-size: 1.75rem;
+    height: 3vh;
+    max-width: 50vw;
+    
+   } */
+   
+
+   .line{
+    width:90%;
+   }
+
+   .toDoTasks{
+    font-size: 1.25rem;
+    margin:5vw;
+   }
+
+   .toDoTasks input{
+    margin-right: 3vw;
+   }
+

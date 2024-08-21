@@ -1,0 +1,150 @@
+.SearchBar{
+    background-color: black;
+    color: white;
+    width:90vw;
+    margin-top: 6vh;
+    margin-bottom: 3vh;
+    padding: 1vh;
+    border:none;
+    border-radius: 5px;
+    font-size: 1.25rem;
+}
+
+.searchSection{
+text-align: center;
+}
+
+#allPlans{
+    height:90vh;
+    width:90vw;
+    background-color: white;
+    margin: 0 auto;
+    border-radius: 5vw;
+}
+
+#newPlanBox{
+    border:1px solid black;
+    width:90vw;
+    height:40vh;
+    box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.674);
+    border-radius: 5vw;
+    text-align: center;
+    position: fixed ;
+    top: 30vh;
+    background-color: white;
+  
+}
+
+#newPlan{
+    padding:3vw;
+    width:80vw;
+    margin-top: 13vh;
+    border-radius: 2vw;
+    font-size: 1.5rem;    
+}
+
+.newPlanButtons{
+   font-size: 1.5rem;
+   border: none;
+   background-color: white;
+    margin-top: 1vh;
+}
+.blue{
+    color:blue;
+}
+
+
+#cancelNewPlan{
+    margin-right: 50vw;
+}
+
+#addPlan{
+    position: fixed;
+    bottom:15vh;
+    right:15vw;
+    width:15vw;
+    border-radius:50%;
+    font-size: 3rem;
+    border: 5px solid black;
+    box-shadow: 5px 5px 5px  gray;
+}
+.deleteButton{
+    background-color: red;
+    color:white;
+    border-radius: 50%;
+    height: 6vw;
+    width:6vw;
+    border: none;
+    font-size: 2rem;
+    margin-left: 3vw;
+  
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;  
+    font-size: 20px; /* Adjust as needed */
+    line-height: 1; 
+}
+
+.editButton{
+    margin-top: -10vh;
+    margin-left: 75vw;
+    margin-bottom: -5vh;
+    border: none;
+    color: blue;
+    font-size: 1.25rem;
+    background-color: white;
+}
+
+.eachPlansDiv{
+    display: flex;
+}
+
+.planTitle{
+    margin-left: 5vw;
+    padding-top: 3vh;
+}
+.eachPlans{
+    margin-left: 5vw;;
+}
+
+.plansLink{
+    text-decoration: none;
+    color: black;
+}
+
+.planExistWarning{
+    color:red;
+}
+
+.confirmDelete{
+    border:1px solid black;
+    text-align: center;
+    background-color: white;
+    box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.674);
+    font-size: 1.25rem;
+    position: fixed;
+    bottom:45vh;
+    left:10vw;
+    width:80vw;
+}
+.confirmButton{
+    border:none;
+    background-color: white;
+    padding-top: 1vh;
+    padding-bottom: 3vh;
+    font-size: 1.25rem;
+}
+
+.cancelConfirm{
+    padding-right: 25vw;
+    color:blue;
+}
+.yesConfirm{
+    color:red;
+}
+
+.hidden{
+    display:none;
+}
