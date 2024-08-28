@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Calendar from "./pages/Calendar/Calendar.jsx";
 import Plans from "./pages/Plans/Plans.jsx";
 import Account from "./pages/Account/Account.jsx";
+import Settings from "./pages/Settings/Settings.jsx";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<Calendar />} />
           <Route path="/plans" element={<Plans />} />
           <Route path="/account" element={<Account />} />
+          <Route path="/settings" element={<Settings />} />
         </Routes>
         <Navbar />
       </BrowserRouter>

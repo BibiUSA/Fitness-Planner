@@ -1,6 +1,6 @@
 .navbar{
     width:100vw;
-    height:10vh;
+    height:9vh;
     position: fixed;
     bottom:0;
     background-color: black;
@@ -14,6 +14,7 @@
     justify-content: space-around;
     list-style-type: none;
     margin-top: 1vh;
+    text-align: center;
     
 }
 

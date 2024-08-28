@@ -2,8 +2,7 @@
     background-color: black;
     color: white;
     width:90vw;
-    margin-top: 6vh;
-    margin-bottom: 3vh;
+    margin-top: 3vh;
     padding: 1vh;
     border:none;
     border-radius: 5px;
@@ -30,43 +29,68 @@ text-align: center;
     border-radius: 5vw;
     text-align: center;
     position: fixed ;
-    top: 30vh;
-    background-color: white;
+    top: 25vh;
+    background-color: gray;
   
 }
 
 #newPlan{
     padding:3vw;
-    width:80vw;
+    width:78vw;
+    align-self: center;
+    background-color: black;
     margin-top: 13vh;
     border-radius: 2vw;
-    font-size: 1.5rem;    
+    font-size: 1.25rem; 
+    text-align: center;  
+    color:white; 
 }
 
 .newPlanButtons{
-   font-size: 1.5rem;
+   font-size: 1.25rem;
    border: none;
-   background-color: white;
-    margin-top: 1vh;
+   background-color: transparent;
+    margin-top: 2vh;
+    /* display: inline-flexbox;
+    justify-content: space-between; */
+    
+    
 }
+
+.gray{
+    color:rgba(0, 0, 255, 0.324);
+}
+
 .blue{
     color:blue;
 }
 
-
 #cancelNewPlan{
-    margin-right: 50vw;
+    position: relative;
+    left:-10vw;
+    color:blue;
 }
+
+#addNewPlan{
+    position: relative;
+    left:10vw;
+    
+}
+
 
 #addPlan{
     position: fixed;
-    bottom:15vh;
-    right:15vw;
-    width:15vw;
+    bottom:13vh;
+    right:13vw;
+    width:70px;
+    padding: 0;
+    height:70px;
     border-radius:50%;
     font-size: 3rem;
     border: 5px solid black;
-    box-shadow: 5px 5px 5px  gray;
+    box-shadow: 5px 3px 5px   gray;
+    color:white;
+    background-color: black;
 }
 .deleteButton{
     background-color: red;
@@ -76,7 +100,7 @@ text-align: center;
     width:6vw;
     border: none;
     font-size: 2rem;
-    margin-left: 3vw;
+    margin-left: 5vw;
   
     align-self: center;
     display: flex;
@@ -88,30 +112,52 @@ text-align: center;
 }
 
 .editButton{
-    margin-top: -10vh;
-    margin-left: 75vw;
+  
     margin-bottom: -5vh;
     border: none;
     color: blue;
     font-size: 1.25rem;
-    background-color: white;
+    background-color:transparent;
+    position: relative;
+    top:3vh;
+    left:65vw;
+    margin-bottom: 3vh;
+}
+.hr{
+    width:85vw;
+    margin-bottom: 0px;
+    color:gray;
+    margin-right: 0;
+}
+.eachPlansDiv{
+    padding-top: 1vh;
+}
+.eachPlansDiv:active{
+    background-color: gray;
 }
 
-.eachPlansDiv{
-    display: flex;
+.eachPlansLine{
+   display: flex;
 }
 
 .planTitle{
-    margin-left: 5vw;
-    padding-top: 3vh;
+    margin-left: 10vw;
+  
 }
 .eachPlans{
-    margin-left: 5vw;;
+    margin-left: 5vw;
+    font-size: 1.25rem;
+    list-style-type: circle;
+    
+}
+
+li::marker{
+    font-size: 1.75rem;
 }
 
 .plansLink{
     text-decoration: none;
-    color: black;
+    color:black;
 }
 
 .planExistWarning{

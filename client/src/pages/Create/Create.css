@@ -1,7 +1,7 @@
 
 #Create{
     height: 100%;
-    padding-top: 5vh;
+    padding-top: 1vh;
 
    }
 
@@ -18,9 +18,19 @@
     width:70vw;
     margin-left: 5vw;
     margin-top: 3vh;
+    padding-top: 5vh;
     background-color: white;
     border: none;
     display: list-item;
+    font-size: 1.25rem;
+   }
+
+   #newAction{
+    outline:none;
+   }
+
+   li::marker{
+    font-size: 1.75rem;
    }
 
    #newAction:active{
@@ -28,8 +38,8 @@
    }
 
    .planName{
-    margin-left: 6vw;
-    padding-top: 3vh;
+    margin-left: 10vw;
+
    }
     
    /* .planName{

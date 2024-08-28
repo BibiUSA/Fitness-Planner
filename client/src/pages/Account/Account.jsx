@@ -29,9 +29,15 @@ export default function Account() {
   };
 
   return (
-    <>
-      <h1>Authentication Page</h1>
-      <GoogleLogin
+    <div className="accountPage">
+    <div className="accountBox">
+    <h2>Make a Plan.</h2>
+      <h2>Hit your Goals.</h2>
+      <img src="/public/assets/gym.jpeg" id="illustration"/>
+      
+      <p>Log in to get started!</p>
+      <div className="google">
+      <GoogleLogin 
         onSuccess={(credentialResponse) => {
           let credentialResponseDecoded = jwtDecode(
             credentialResponse.credential
@@ -42,6 +48,8 @@ export default function Account() {
           console.log("Login Failed");
         }}
       />
-    </>
+      </div>
+      </div>
+    </div>
   );
 }

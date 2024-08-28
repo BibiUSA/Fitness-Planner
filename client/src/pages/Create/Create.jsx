@@ -83,8 +83,9 @@ export default function Create() {
 
   return (
     <div id="Create">
+      <h1 className="planName">{planName}</h1>
       <div id="planMaker">
-        <h1 className="planName">{planName}</h1>
+        
         {/* <input type="text" className="planName" value={planChange} />  future feature  */}
         <form>
           <input

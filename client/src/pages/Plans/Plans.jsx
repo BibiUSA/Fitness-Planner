@@ -17,14 +17,14 @@ export default function Plans() {
     //changes warning message if no plan input vs plan already exists
     "Plan already exists.Try a different name."
   );
-  const [addBlue, setAddBlue] = useState("newPlanButtons"); //changes add button to blue when there's an input
+  const [addBlue, setAddBlue] = useState("newPlanButtons gray"); //changes add button to blue when there's an input
   const [delPlan, setDelPlan] = useState();
   function handleChange(event) {
     setNewPlanInput(event.target.value);
     if (newPlanInput.length > 1) {
       setAddBlue("newPlanButtons blue");
     } else {
-      setAddBlue("newPlanButtons");
+      setAddBlue("newPlanButtons gray");
     }
   }
 
@@ -57,7 +57,10 @@ export default function Plans() {
     } else if (obj.plan.toLowerCase().includes(search.toLowerCase())) {
       return (
         <>
+        
           <div className="eachPlansDiv">
+          <Link to={`/create/${obj.plan}`} className="plansLink">
+            <div className="eachPlansLine">
             <input
               type="button"
               value="-"
@@ -65,13 +68,16 @@ export default function Plans() {
               onClick={() => getConfirmation(obj.plan)}
               id={obj.task_id + "d"}
             ></input>
-            <Link to={`/create/${obj.plan}`} className="plansLink">
-              <p id={obj.task_id} className="eachPlans">
+            
+              <li id={obj.task_id} className="eachPlans">
                 {obj.plan}
-              </p>
-            </Link>
+              </li>
+            
           </div>
-          <hr></hr>
+          </Link>
+          <hr className="hr"></hr>
+          </div>
+          
         </>
       );
     }
@@ -159,8 +165,8 @@ export default function Plans() {
         ></input>
         <label htmlFor="search"></label>
       </div>
+      <h1 className="planTitle">Plans</h1>
       <div id="allPlans">
-        <h1 className="planTitle">Plans</h1>
         <input
           type="button"
           value={editButton}
@@ -175,7 +181,7 @@ export default function Plans() {
           value={"+"}
           onClick={showBox}
         ></input>
-        <label htmlFor="addPlan"></label>
+        
 
         <div id="newPlanBox" className={hideBox}>
           <div id="newPlanButtons">
@@ -186,15 +192,16 @@ export default function Plans() {
               value="Cancel"
               onClick={cancel}
             ></input>
-            <label htmlFor="cancelNewPlan"></label>
+            
             <input
               type="button"
               className={addBlue}
               id="addNewPlan"
               value="Add"
               onClick={addPlan}
+              
             ></input>
-            <label htmlFor="addNewPlan"></label>
+           
           </div>
           <input
             type="textarea"
