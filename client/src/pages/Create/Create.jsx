@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 
 export default function Create() {
   const createArray = [];
+  const [email, setEmail] = useState(null);
   function stopRefresh(event) {
     console.log(event);
   }
@@ -17,23 +18,56 @@ export default function Create() {
   // const [changePlan, setChangePlan] = useState(plan);
   const planName = plan;
   const fetchAPI = async () => {
-    const response = await axios.get(`http://localhost:3001/api/${plan}`);
-    setBackendData(response.data.data);
-    console.log(response.data.data);
+    const userEmail = await tokenLogging();
+    if (userEmail) {
+      const response = await axios.get(`http://localhost:3001/api/${plan}`, {
+        params: { email: userEmail },
+      });
+      setBackendData(response.data.data);
+      console.log(response.data.data);
+    }
+  };
+
+  const tokenLogging = async () => {
+    try {
+      const token = localStorage.getItem("auth_token");
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+      const response = await axios.post(
+        "http://localhost:3001/account/protect",
+        {},
+        {
+          headers: headers,
+        }
+      );
+      console.log(response.data);
+      setEmail(response.data);
+      return response.data; //return value for fetchAPI
+
+      //window.location = "/plans";
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
     fetchAPI();
   }, []);
 
+  console.log(backendData);
+
   // axios.post("/create", {});
   //sends data to back end and data base
   const handleChange = async (event) => {
     if (event.key === "Enter") {
+      console.log("sending");
       try {
-        const response = await axios.post("http://localhost:3001/create", {
+        const response = await axios.post("http://localhost:3001/api/create", {
           data: event.target.value,
           plan: planName,
+          plan_id: backendData[0].plan_id,
+          email: backendData[0].email,
         });
 
         console.log(response);
@@ -59,6 +93,7 @@ export default function Create() {
     }
   };
   console.log(backendData);
+
   //spreads out the todo tasks
   const toDoTasks = backendData.map((obj) => {
     if (obj.task !== "1995ActuallyAPlan") {
@@ -85,7 +120,6 @@ export default function Create() {
     <div id="Create">
       <h1 className="planName">{planName}</h1>
       <div id="planMaker">
-        
         {/* <input type="text" className="planName" value={planChange} />  future feature  */}
         <form>
           <input

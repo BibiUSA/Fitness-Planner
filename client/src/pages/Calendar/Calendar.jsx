@@ -1,106 +1,99 @@
+// import { useState, useContext, useEffect } from "react";
+// import "./Calendar.css";
+// import { DayPilotCalendar } from "@daypilot/daypilot-lite-react";
+
+// export default function Calendar() {
+//   const config = {
+//     viewType: "Week",
+//     durationBarVisible: false,
+//   };
+
+//   return (
+//     <>
+//       <DayPilotCalendar {...config} />
+//     </>
+//   );
+// }
+import React, { useState, useEffect } from "react";
+import { format, startOfWeek, addDays, subWeeks, addWeeks } from "date-fns";
 import "./Calendar.css";
-import { useState } from "react";
 
-export default function Calendar() {
-  const today = new Date();
-  let dayToday = today.getDay();
-  let date = today.getDate();
-  let month = today.getMonth();
-  let year = today.getFullYear();
-  const [clickedDate, setClickedDate] = useState();
-  const week = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
-  const monthName = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
+const Calendar = () => {
+  const [currentDate, setCurrentDate] = useState(new Date());
+  const [week, setWeek] = useState([]);
 
-  const dayOne = new Date(year, month, 1);
-  const dayOneDay = dayOne.getDay();
-  const lastDay = new Date(year, month + 1, 0);
-  const monthLength = lastDay.getDate();
+  console.log(week);
+  console.log(currentDate.toLocaleDateString("en-CA"));
 
-  const emptyDatesArr = []; //main purpose is it to use it to map the empty div
-  for (let i = 0; i < dayOneDay; i++) {
-    emptyDatesArr.push("eachDay");
+  for (let i = 0; i < week.length; i++) {
+    console.log(format(week[i], "yyyy-mm-dd"));
   }
 
-  const emptyDays = emptyDatesArr.map((item) => {
-    return <div className={item} onClick={logDay}></div>;
-  });
+  //   const events = week.map((day) => {
+  //     <div key={day.toString()} className="day">
+  //       <div className="date">{format(day, "d")}</div>
+  //       {/* You can add events or other content for each day here */}
+  //     </div>;
+  //   });
 
-  const monthDatesArr = []; //main purpose to map to create the divs with numbers
-  for (let i = 0; i < monthLength; i++) {
-    monthDatesArr.push(i + 1);
-  }
+  const fetchAPI = async () => {
+    const response = await axios.get(`http://localhost:3001/calendar`);
 
-  const monthDays = monthDatesArr.map((item) => {
-    if (item === date) {
-      return (
-        <div className="eachDay current-date" onClick={logDay}>
-          {item}
-        </div>
-      );
-    } else {
-      return (
-        <div className="eachDay" onClick={logDay}>
-          {item}
-        </div>
-      );
-    }
-  });
+    console.log(response);
+  };
 
-  function logDay(event) {
-    setClickedDate(event.target.innerText);
-  }
+  useEffect(() => {
+    fetchAPI;
+  }, [currentDate]);
 
-  console.log(emptyDatesArr);
+  useEffect(() => {
+    const weekStart = startOfWeek(currentDate);
+    const days = Array.from({ length: 7 }, (_, i) => addDays(weekStart, i));
+    setWeek(days);
+  }, [currentDate]);
+
+  const goToPreviousWeek = () => {
+    setCurrentDate(subWeeks(currentDate, 1));
+  };
+
+  const goToNextWeek = () => {
+    setCurrentDate(addWeeks(currentDate, 1));
+  };
+
   return (
-    <>
-      <div className="calendar">
-        <header>
-          <div className="display">
-            <p className="todayDate">
-              <strong>{date}</strong>
-            </p>
-            <div className="todayAndMonth">
-              <p>{week[dayToday]}</p>
-              <p>
-                {monthName[month]} {year}
-              </p>
+    <div className="weekly-calendar">
+      <div className="calendar-header">
+        <button onClick={goToPreviousWeek}>Previous Week</button>
+        <h2>{format(currentDate, "MMMM yyyy")}</h2>
+        <button onClick={goToNextWeek}>Next Week</button>
+      </div>
+      <div className="calendar-body">
+        <div className="day-names">
+          {[
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+          ].map((day) => (
+            <div key={day} className="day-name">
+              {day}
             </div>
-          </div>
-          <div className="changeMonth">
-            <button className="previous">Prev</button>
-            <button className="next">Next</button>
-          </div>
-        </header>
+          ))}
+        </div>
         <div className="week">
-          <div>Sun</div>
-          <div>Mon</div>
-          <div>Tue</div>
-          <div>Wed</div>
-          <div>Thu</div>
-          <div>Fri</div>
-          <div>Sat</div>
-        </div>
-        <div className="days">
-          {emptyDays}
-          {monthDays}
+          {week.map((day) => (
+            <div key={day.toString()} className="day">
+              <div className="date">{format(day, "d")}</div>
+              {/* You can add events or other content for each day here */}
+            </div>
+          ))}
         </div>
       </div>
-      <div className="selectedDiv">
-        <p className="selected">{clickedDate}</p>
-      </div>
-    </>
+    </div>
   );
-}
+};
+
+export default Calendar;

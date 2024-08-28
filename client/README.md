@@ -12,3 +12,5 @@ delete id before deploy =363539035898-3pvp58as8674ah347rbklub1k46sj00d.apps.goog
 delete secret = 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
 
 credential: "eyJhbGciOiJSUzI1NiIsImtpZCI6ImQyZDQ0NGNmOGM1ZTNhZTgzODZkNjZhMTNhMzE2OTc2Y
+
+"proxy": "http://localhost:3001",//"https://fitness-planner-backend.onrender.com"

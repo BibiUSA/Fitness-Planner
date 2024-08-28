@@ -10,8 +10,9 @@
 }
 
 #illustration{
-  width:60vw;
+  
   margin:0 auto;
+  max-height: 30vh;
  
     
 }
@@ -25,4 +26,5 @@
     margin-left:20vw;
     margin-right: 20vw;
     margin-bottom: 18vh;
+    
 }

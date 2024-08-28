@@ -1,61 +1,50 @@
-.calendar{
+.weekly-calendar {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
     background-color: white;
-    border: 1px solid red;
-    margin-top: 10vh;
-}
-
-.days,.week{
-    display:grid;
-    grid-template-columns: repeat(7,1fr);
-    background-color: white;
-}
-
-.days :hover{
-    color:blue;
-    cursor:pointer;
-}
-.days{
-    background-color: white;
-}
-
-.eachDay,.week div{
-    
-    padding: 15px;
-    background-color: white;
-    text-align: center;
-    
-}
-
-.current-date{
-    
-    font-weight: bolder;
-    background-color: orange;
-}
-
-.selected{
-    background: white;
+  }
   
-}
-
-.display{
-    display: flex;
-}
-
-.todayDate{
-    font-size: 2.5rem;
-}
-.todayAndMonth{
-    margin-top: 2vh;
-}
-.todayAndMonth p{
-    padding: none;
-}
-
-header{
+  .calendar-header {
     display: flex;
     justify-content: space-between;
-}
-
-.changeMonth{
-    margin-right: 10vw;
-}
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .calendar-body {
+    display: flex;
+  }
+  
+  .day-names {
+    width: 100px;
+    border: 1px solid yellow;
+  }
+  
+  .day-name {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid green;
+  }
+  
+  .week {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+   
+  }
+  
+  .day {
+    height: 79px;
+    /* border-bottom: 1px solid black; */
+    padding: 10px;
+    border: 1px solid red;
+   
+  }
+  
+  .date {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }

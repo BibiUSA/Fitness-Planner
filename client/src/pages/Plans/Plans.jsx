@@ -1,12 +1,12 @@
 import "./Plans.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
 export default function Plans() {
   const [hideBox, setHideBox] = useState("hidden"); //class to hide add Plan Box
   const [deleteBox, setDeleteBox] = useState("hidden deleteButton"); //classes to hide deletButton
-  const [newPlanInput, setNewPlanInput] = useState(""); //the input typed into a the pkan name
+  const [newPlanInput, setNewPlanInput] = useState(""); //the input typed into a the plan name
   const [editButton, setEditButton] = useState("Edit"); //changes between edit and done to allow plan editing
   const [totalPlans, setTotalPlans] = useState([1]); //total number of plans
   const [plansAdded, setPlansAdded] = useState(0); //used to refetch full data
@@ -19,6 +19,7 @@ export default function Plans() {
   );
   const [addBlue, setAddBlue] = useState("newPlanButtons gray"); //changes add button to blue when there's an input
   const [delPlan, setDelPlan] = useState();
+  const [email, setEmail] = useState(null);
   function handleChange(event) {
     setNewPlanInput(event.target.value);
     if (newPlanInput.length > 1) {
@@ -28,9 +29,48 @@ export default function Plans() {
     }
   }
 
+  // useEffect(() => {
+
+  // }, []);
+
+  //checks to see if token is there.
+  const tokenLogging = async () => {
+    try {
+      const token = localStorage.getItem("auth_token");
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+      const response = await axios.post(
+        "http://localhost:3001/account/protect",
+        {},
+        {
+          headers: headers,
+        }
+      );
+      console.log(response.data);
+      setEmail(response.data);
+      return response.data; //return value for fetchAPI
+
+      //window.location = "/plans";
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  //gets all the plans
   const fetchAPI = async () => {
-    const response = await axios.get("http://localhost:3001/plans");
-    setTotalPlans(response.data.data);
+    const userEmail = await tokenLogging(); //checks to make sure tokenLogging is ran first fully
+    if (userEmail) {
+      const response = await axios.get(
+        "http://localhost:3001/plans",
+
+        {
+          params: { email: userEmail },
+        }
+      );
+      setTotalPlans(response.data.data);
+      console.log(userEmail);
+    }
   };
 
   useEffect(() => {
@@ -57,27 +97,24 @@ export default function Plans() {
     } else if (obj.plan.toLowerCase().includes(search.toLowerCase())) {
       return (
         <>
-        
           <div className="eachPlansDiv">
-          <Link to={`/create/${obj.plan}`} className="plansLink">
             <div className="eachPlansLine">
-            <input
-              type="button"
-              value="-"
-              className={deleteBox}
-              onClick={() => getConfirmation(obj.plan)}
-              id={obj.task_id + "d"}
-            ></input>
-            
-              <li id={obj.task_id} className="eachPlans">
-                {obj.plan}
-              </li>
-            
+              <input
+                type="button"
+                value="-"
+                className={deleteBox}
+                onClick={() => getConfirmation(obj.plan)}
+                id={obj.task_id + "d"}
+              ></input>
+              <Link to={`/create/${obj.plan}`} className="plansLink">
+                <li id={obj.task_id} className="eachPlans">
+                  {obj.plan}
+                </li>
+              </Link>
+            </div>
+
+            <hr className="hr"></hr>
           </div>
-          </Link>
-          <hr className="hr"></hr>
-          </div>
-          
         </>
       );
     }
@@ -181,7 +218,6 @@ export default function Plans() {
           value={"+"}
           onClick={showBox}
         ></input>
-        
 
         <div id="newPlanBox" className={hideBox}>
           <div id="newPlanButtons">
@@ -192,16 +228,14 @@ export default function Plans() {
               value="Cancel"
               onClick={cancel}
             ></input>
-            
+
             <input
               type="button"
               className={addBlue}
               id="addNewPlan"
               value="Add"
               onClick={addPlan}
-              
             ></input>
-           
           </div>
           <input
             type="textarea"
