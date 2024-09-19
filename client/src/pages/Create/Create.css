@@ -8,10 +8,10 @@
 #planMaker{
     background-color: white;
      min-height: 90%;
-     width:85%;
+     width:100vw;
     margin: 0 auto;
     margin-top: 5%;
-    border-radius: 5%;
+    border-radius: 5vw;
    }
 
    #newAction{
@@ -39,6 +39,7 @@
 
    .planName{
     margin-left: 10vw;
+    color:white;
 
    }
     

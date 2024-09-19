@@ -10,7 +10,6 @@ export default function Account() {
 
   console.log(email);
   useEffect(() => {
-    tokenLogging();
     loggingIn();
   }, [email]);
 
@@ -26,36 +25,43 @@ export default function Account() {
           },
           { withCredentials: true }
         );
-
+        console.log(response);
         localStorage.setItem("auth_token", response.data.token);
 
-        //window.location = "/plans";
+        window.location = "/";
       } catch (error) {
         console.log(error);
+        npm;
       }
     }
   };
 
   const tokenLogging = async () => {
+    console.log("tokenLoggin");
     try {
       const token = localStorage.getItem("auth_token");
       const headers = {
         Authorization: `Bearer ${token}`,
       };
-      const response = await axios.post(
-        "http://localhost:3001/account/protect",
-        {},
-        {
-          headers: headers,
-        }
-      );
-      console.log(response.data);
-
-      //window.location = "/plans";
+      if (token != null) {
+        const response = await axios.post(
+          "http://localhost:3001/account/protect",
+          {},
+          {
+            headers: headers,
+          }
+        );
+        console.log(response.data.email);
+        setEmail(response.data.email);
+      }
+      // window.location = "/settings";
     } catch (error) {
       console.log(error);
     }
   };
+  useEffect(() => {
+    tokenLogging();
+  }, []);
 
   return (
     <div className="accountPage">

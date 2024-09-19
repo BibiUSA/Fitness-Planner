@@ -21,7 +21,7 @@ export default function Create() {
     const userEmail = await tokenLogging();
     if (userEmail) {
       const response = await axios.get(`http://localhost:3001/api/${plan}`, {
-        params: { email: userEmail },
+        params: { email: userEmail.email },
       });
       setBackendData(response.data.data);
       console.log(response.data.data);
@@ -34,18 +34,22 @@ export default function Create() {
       const headers = {
         Authorization: `Bearer ${token}`,
       };
-      const response = await axios.post(
-        "http://localhost:3001/account/protect",
-        {},
-        {
-          headers: headers,
-        }
-      );
-      console.log(response.data);
-      setEmail(response.data);
-      return response.data; //return value for fetchAPI
+      if (token != null) {
+        const response = await axios.post(
+          "http://localhost:3001/account/protect",
+          {},
+          {
+            headers: headers,
+          }
+        );
+        console.log(response.data.email);
+        setEmail(response.data.email);
+        return response.data; //return value for fetchAPI
 
-      //window.location = "/plans";
+        //window.location = "/plans";
+      } else {
+        window.location = "/account";
+      }
     } catch (error) {
       console.log(error);
     }
