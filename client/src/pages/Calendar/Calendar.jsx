@@ -64,6 +64,7 @@ const Calendar = () => {
   //   });
 
   //to get data of all plans in the dates
+
   const fetchAPI = async () => {
     try {
       const response = await axios.get(`http://localhost:3001/calendar`, {
